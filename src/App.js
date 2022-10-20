@@ -3,60 +3,34 @@ import "./App.css";
 import Web3 from "web3";
 import abi from "./abi.js";
 import ModalAuth from "./components/ModalAuth/ModalAuth";
-
-let web3, contractInstance;
+import { AppContext } from "./contexts/context";
+import Profile from "./components/Profile/Profile";
 
 function App() {
-	const [accounts, setAccounts] = React.useState([]);
-	const [currentAcc, setCurrentAcc] = React.useState();
-	const [balance, setBalance] = React.useState();
+	const [state, dispatch] = React.useContext(AppContext);
+
+	console.log(state);
 
 	React.useEffect(() => {
 		async function connect() {
-			web3 = new Web3(
+			let web3 = new Web3(
 				new Web3.providers.HttpProvider("http://localhost:8545")
 			);
+			dispatch({ type: "SET_WEB3", payload: web3 });
 
-			contractInstance = new web3.eth.Contract(
+			let contractInstance = new web3.eth.Contract(
 				abi,
-				"0x38f619Ff83AABDd9Af186FbAfb3342E0cB1206d7"
+				"0x74761c16D4103Fc49160897fD6B29f16A783Adf6"
 			);
-
-			let resp = await web3.eth.getAccounts();
-			setAccounts(resp);
-			setCurrentAcc(resp[0]);
+			dispatch({ type: "SET_CONTRACT", payload: contractInstance });
 		}
 		connect();
-	}, []);
-
-	React.useEffect(() => {
-		async function getAccountBalance() {
-			if (web3 && currentAcc){
-				const balance = await web3.eth.getBalance(currentAcc);
-				const ethBalance = web3.utils.fromWei(balance, "ether");
-				setBalance(ethBalance);
-			}
-		}
-		getAccountBalance();
-	}, [currentAcc]);
+	}, [state.web3]);
 
 	return (
 		<div className="App">
-			<ModalAuth contractInstance={contractInstance} web3={web3}/>
-			<select
-				onChange={(event) => {
-					setCurrentAcc(event.target.value);
-				}}
-			>
-				{accounts.map((acc) => {
-					return (
-						<option value={acc} key={acc}>
-							{acc}
-						</option>
-					);
-				})}
-			</select>
-			<p>Balance: {balance} eth</p>
+			<ModalAuth />
+			<Profile />
 		</div>
 	);
 }

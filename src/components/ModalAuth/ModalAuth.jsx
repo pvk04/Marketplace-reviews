@@ -1,15 +1,17 @@
 import React from "react";
+import { AppContext } from "../../contexts/context";
 
 import styles from "./ModalAuth.module.css";
 
-function ModalAuth({contractInstance, web3}) {
-    const [currentAccount, setCurrentAccount] = React.useState();
+function ModalAuth() {
+    const [state, dispatch] = React.useContext(AppContext);
     const [login, setLogin] = React.useState('');
     const [password, setPassword] = React.useState('');
 
     async function reg(){
-        let bytesPass = await web3.utils.soliditySha3({type: "string", value: password});
-        await contractInstance.methods.registration(bytesPass).send({from: login}, (error) => {
+        let bytesPass = await state.web3.utils.soliditySha3({type: "string", value: password});
+        await state.contractInstance.methods.registration(bytesPass).send({from: login}, (error, res) => {
+            console.log(res)
             if(!error){
                 alert("You succesfully registered");
             }
@@ -17,14 +19,16 @@ function ModalAuth({contractInstance, web3}) {
     }
 
     async function auth(){
-        let bytesPass = await web3.utils.soliditySha3({type: "string", value: password});
-        let resp = await contractInstance.methods.login(bytesPass).call({from: login});
+        let bytesPass = await state.web3.utils.soliditySha3({type: "string", value: password});
+        let resp = await state.contractInstance.methods.login(bytesPass).call({from: login});
 
         if (resp){
             setLogin('');
             setPassword('');
-            setCurrentAccount(login);
-            console.log(currentAccount)
+            dispatch({type: "SET_CURRENT", payload: login});
+            let userInfo = await state.contractInstance.methods.users(login).call({from: login});
+            dispatch({type: "SET_ROLE", payload: userInfo.role});
+            dispatch({type: "USER_LOGIN"});
         }
         else{
             alert("Incorrect address or password");
@@ -33,7 +37,7 @@ function ModalAuth({contractInstance, web3}) {
     }
 
     return(    
-        <div className={styles.modal_wrap}>
+        <div className={!state.login ? styles.modal_wrap : styles.none}>
             <div className={styles.modal_auth}>
                 <div className={styles.modal_auth_content}>
                     <h1>Login/Register</h1>
