@@ -5,8 +5,10 @@ import abi from "./abi.js";
 import ModalAuth from "./components/ModalAuth/ModalAuth";
 import { AppContext } from "./contexts/context";
 import Profile from "./components/Profile/Profile";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 function App() {
+	const navigate = useNavigate();
 	const [state, dispatch] = React.useContext(AppContext);
 
 	console.log(state);
@@ -20,17 +22,29 @@ function App() {
 
 			let contractInstance = new web3.eth.Contract(
 				abi,
-				"0x74761c16D4103Fc49160897fD6B29f16A783Adf6"
+				"0x878d14357a21CfC20648F233433dA424AcAD514E"
 			);
 			dispatch({ type: "SET_CONTRACT", payload: contractInstance });
 		}
 		connect();
-	}, [state.web3]);
+	}, []);
+
+	React.useEffect(() => {
+        function checkLogin(){
+            let loginStatus = state.login;
+            if (!loginStatus){
+                navigate('/');
+            }
+        }
+        checkLogin();
+    }, [state.login]);
 
 	return (
 		<div className="App">
-			<ModalAuth />
-			<Profile />
+			<Routes>
+				<Route path="/" element={<ModalAuth />} />
+				<Route path="/profile/*" element={<Profile />} />
+			</Routes>
 		</div>
 	);
 }

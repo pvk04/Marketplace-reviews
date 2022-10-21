@@ -5,6 +5,7 @@ const initialState = {
 	contractInstance: {},
 	currentAcc: 0,
 	role: 0,
+	activeRole: 0,
 	login: false,
 };
 
@@ -30,6 +31,11 @@ function reducer(state, action) {
 				...state,
 				role: action.payload,
 			};
+		case "SET_ACTIVEROLE":
+			return{
+				...state,
+				activeRole: action.payload,
+			}
 		case "USER_LOGIN":
 			return {
 				...state,
@@ -37,7 +43,10 @@ function reducer(state, action) {
 			};
 		case "USER_LOGOUT":
 			return {
-				...initialState,
+				...state,
+				currentAcc: 0,
+				role: 0,
+				login: false,
 			};
 		default:
 			return state;

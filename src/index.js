@@ -2,10 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import { AppProvider } from "./contexts/context";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<AppProvider>
-		<App />
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
 	</AppProvider>
 );
