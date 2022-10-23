@@ -20,6 +20,24 @@ const abi = [
 				type: "address",
 			},
 			{
+				internalType: "string",
+				name: "text",
+				type: "string",
+			},
+		],
+		name: "addHistory",
+		outputs: [],
+		stateMutability: "nonpayable",
+		type: "function",
+	},
+	{
+		inputs: [
+			{
+				internalType: "address",
+				name: "user",
+				type: "address",
+			},
+			{
 				internalType: "uint256",
 				name: "role",
 				type: "uint256",
@@ -278,6 +296,41 @@ const abi = [
 				internalType: "string",
 				name: "city",
 				type: "string",
+			},
+		],
+		stateMutability: "view",
+		type: "function",
+	},
+	{
+		inputs: [],
+		name: "showRequests",
+		outputs: [
+			{
+				components: [
+					{
+						internalType: "address",
+						name: "user",
+						type: "address",
+					},
+					{
+						internalType: "uint256",
+						name: "role",
+						type: "uint256",
+					},
+					{
+						internalType: "int256",
+						name: "shop",
+						type: "int256",
+					},
+					{
+						internalType: "bool",
+						name: "status",
+						type: "bool",
+					},
+				],
+				internalType: "struct MarketplaceRewievs.Request[]",
+				name: "",
+				type: "tuple[]",
 			},
 		],
 		stateMutability: "view",

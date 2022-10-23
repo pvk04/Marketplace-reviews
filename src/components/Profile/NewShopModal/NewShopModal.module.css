@@ -1,4 +1,4 @@
-.modal_wrap{
+.modal_wrap {
     position: fixed;
     display: flex;
     z-index: 1;
@@ -9,7 +9,7 @@
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal_auth{
+.modal_prom {
     position: relative;
     display: flex;
     margin: auto;
@@ -21,14 +21,14 @@
     border-radius: 3%;
 }
 
-.modal_auth_content{
+.modal_prom_content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.content_div{
+.content_div {
     display: flex;
     width: 100%;
     margin-bottom: 10px;
@@ -36,19 +36,7 @@
     line-height: 0px;
 }
 
-.auth_inp{
-    width: 200px;
-    font-size: 15px;
-    border: none;
-    border-bottom: 1px solid black;
-}
-
-.auth_inp:active, .auth_inp:hover, .auth_inp:focus {
-    outline: 0;
-    outline-offset: 0;
-}
-
-.buttons_div{
+.buttons_div {
     display: flex;
     width: calc(100% - 60%);
     margin: auto;
@@ -57,23 +45,27 @@
     align-items: center;
 }
 
-.login_button{
-    margin-bottom: 20px;
-    padding: 10px 40px;
-    font-size: 20px;
+.city_inp {
+    width: 350px;
+    font-size: 15px;
     border: none;
-    border-radius: 6px;
-    outline: none;
-    cursor: pointer;
-    color: rgb(0, 0, 119);
-    background: rgb(175, 219, 255);
+    border-bottom: 1px solid black;
 }
 
-.reg_button{
-    color: rgb(0, 0, 119);
-    text-decoration: underline;
-    border: none;
-    outline: none;
-    cursor: pointer;
+.city_inp:active,
+.city_inp:hover,
+.city_inp:focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
+.close_modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
     background: none;
+}
+
+.hide {
+    display: none;
 }

@@ -3,9 +3,11 @@ import React from "react";
 const initialState = {
 	web3: {},
 	contractInstance: {},
-	currentAcc: 0,
-	role: 0,
+	currentAcc: "",
+	role: "",
+	activeRole: "",
 	login: false,
+	activity: 0,
 };
 
 function reducer(state, action) {
@@ -30,6 +32,16 @@ function reducer(state, action) {
 				...state,
 				role: action.payload,
 			};
+		case "SET_ACTIVEROLE":
+			return {
+				...state,
+				activeRole: action.payload,
+			};
+		case "ACTIVITY":
+			return {
+				...state,
+				activity: state.activity + 1,
+			};
 		case "USER_LOGIN":
 			return {
 				...state,
@@ -37,7 +49,10 @@ function reducer(state, action) {
 			};
 		case "USER_LOGOUT":
 			return {
-				...initialState,
+				...state,
+				currentAcc: 0,
+				role: 0,
+				login: false,
 			};
 		default:
 			return state;
