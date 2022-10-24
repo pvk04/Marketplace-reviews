@@ -22,7 +22,7 @@ function App() {
 
 			let contractInstance = new web3.eth.Contract(
 				abi,
-				"0x89E032F5C202Cf7d80266780a51b70410b6edC11"
+				"0x5Ef83D3208efcC97271D1740F2610f35334fb345"
 			);
 			dispatch({ type: "SET_CONTRACT", payload: contractInstance });
 		}

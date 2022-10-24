@@ -3,7 +3,7 @@
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    height: calc(1000px - 267px);
+    height: calc(100vh - 340px);
     width: 100%;
     background: #acc5f165;
     border-radius: 10px;

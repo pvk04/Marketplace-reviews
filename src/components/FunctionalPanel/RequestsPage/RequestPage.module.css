@@ -7,9 +7,10 @@
 
 .request_elem{
     display: flex;
-    flex-direction: column;
     width: 100%;
     margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: center;
     height: fit-content;
     background: white;
     border-radius: 5px;
@@ -18,4 +19,9 @@
 .request_content{
     margin: 0;
     margin-left: 20px;
+}
+
+.confirm{
+    height: fit-content;
+    margin-right: 20px;
 }
