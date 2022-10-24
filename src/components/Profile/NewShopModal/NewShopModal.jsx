@@ -16,16 +16,14 @@ function NewShopModal({active, setActive}) {
     }
 
     async function createNewShop() {
-        console.log({selected, city});
-        await state.contractInstance.methods.createNewShop(selected, city).send({from: state.currentAcc}, (err) => {
-            if (!err){
-                dispatch({type: "ACTIVITY"});
-                setCity('');
-                alert("New store successfully created");
-                setActive(false);
-            }
-        })
-        
+        let resp = await state.contractInstance.methods.createNewShop(selected, city).send({from: state.currentAcc});
+        if (resp){
+            setCity('');
+            alert("New store successfully created");
+            await state.contractInstance.methods.addHistory(state.currentAcc, `You created shop "${selected}, ${city}"`).send({from: state.currentAcc, gas: "6721975"});
+            dispatch({type: "ACTIVITY"});
+            setActive(false);
+        }   
     }
 
     React.useEffect(() => {
@@ -37,7 +35,6 @@ function NewShopModal({active, setActive}) {
                 console.log(addresses);
                 for (let address of addresses){
                     let user = await state.contractInstance.methods.showUser(address).call();
-                    console.log(address)
                     let check = true;
                     for (let shop of shops){
                         if (address == shop.shop_address){
@@ -50,7 +47,7 @@ function NewShopModal({active, setActive}) {
                     }
                 }
                 setAddresses(resArr);
-                setSelected(addresses[0]);
+                setSelected(resArr[0]);
             }
         }
         getAdresses();

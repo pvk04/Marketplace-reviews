@@ -16,8 +16,10 @@ function PromotionModal({active, setActive}){
     
     async function createRequest(){
         await state.contractInstance.methods.requestToChangeRole(selected, 1).send({from: state.currentAcc, gas: "672195"});
-        setSelected(0);
+        await state.contractInstance.methods.addHistory(state.currentAcc, `You have applied for the role of a seller in store ${selected}`).send({from: state.currentAcc, gas: "6721975"});
+        dispatch({type: "ACTIVITY"});
         alert("Request successfully created");
+        setSelected(0);
         setActive(false);
     }
 

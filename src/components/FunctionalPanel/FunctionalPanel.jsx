@@ -4,9 +4,9 @@ import NavBar from "../NavBar/NavBar"
 import ShopsPage from "./ShopsPage/ShopsPage";
 import ChangeRolePage from "./ChangeRolePage/ChangeRolePage";
 import RequestsPage from "./RequestsPage/RequestsPage";
-import CreateRequestPage from "./CreateRequestPage/CreateRequestPage";
 
 import styles from "./FunctionalPanel.module.css";
+import HistoryPage from "./HistoryPage/HistoryPage";
 
 function FunctionalPanel() {
     return(
@@ -16,7 +16,7 @@ function FunctionalPanel() {
                 <Route path="/shops" element={<ShopsPage/>} />
                 <Route path="/changerole" element={<ChangeRolePage />}/>
                 <Route path="/requests" element={<RequestsPage/>}/>
-                <Route path="/createrequest" element={<CreateRequestPage/>}/>
+                <Route path="/history" element={<HistoryPage/>}/>
             </Routes>
         </main>
     );

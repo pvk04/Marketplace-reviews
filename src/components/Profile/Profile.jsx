@@ -29,7 +29,8 @@ function Profile(){
 
     async function demotionRequest(){
         await state.contractInstance.methods.requestToChangeRole(0, 0).send({from: state.currentAcc});
-        await state.contractInstance.methods.addHistory(state.currentAcc, "You have requested a demotion.").send({from: state.currentAcc});
+        await state.contractInstance.methods.addHistory(state.currentAcc, "You have requested a demotion").send({from: state.currentAcc});
+        dispatch({type: "ACTIVITY"});
         alert("Request successfully created");
     }
 

@@ -1,0 +1,20 @@
+.list{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.history_elem{
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+    height: fit-content;
+    align-items: center;
+    background: white;
+    border-radius: 5px;
+}
+
+.history_content{
+    margin-left: 20px;
+}

@@ -1,0 +1,21 @@
+.list{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.request_elem{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+    height: fit-content;
+    background: white;
+    border-radius: 5px;
+}
+
+.request_content{
+    margin: 0;
+    margin-left: 20px;
+}
