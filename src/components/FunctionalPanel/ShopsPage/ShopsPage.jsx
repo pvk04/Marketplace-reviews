@@ -1,11 +1,15 @@
 import React from "react";
 import { AppContext } from "../../../contexts/context";
+import CreateRewievModal from "./CreateRewievModal/CreateRewievModal";
 
 import styles from "./ShopsPage.module.css";
 
 function ShopsPage() {
 	const [state, dispatch] = React.useContext(AppContext);
 	const [shops, setShops] = React.useState([]);
+	const [rewiewModal, setRewievModal] = React.useState(false);
+	const [rewievShop, setRewievShop] = React.useState([]);
+	const [rewievShopId, setRewievShopId] = React.useState();
 
 	async function deleteShop(id) {
 		await state.contractInstance.methods
@@ -32,8 +36,21 @@ function ShopsPage() {
 					Delete
 				</button>
 			);
-		} else {
-			return null;
+		} else if (state.activeRole == 0) {
+			return (
+				<>
+					<button
+						onClick={() => {
+							setRewievShop(shops[id]);
+							setRewievShopId(id)
+							setRewievModal(true);
+						}}
+					>
+						Create rewiev
+					</button>
+					<button>Show</button>
+				</>
+			);
 		}
 	}
 
@@ -52,24 +69,34 @@ function ShopsPage() {
 	}, [state.activity]);
 
 	return (
-		<ul className={styles.list}>
-			{shops.map((shop, id) => {
-				if (
-					shop.shop_address !=
-					"0x0000000000000000000000000000000000000000"
-				) {
-					return (
-						<li key={id} className={styles.shop}>
-							<div className={styles.shop_info}>
-								<p>Address: {shop.shop_address}</p>
-								<p>City: {shop.city}</p>
-							</div>
-							{renderButtons(id)}
-						</li>
-					);
-				}
-			})}
-		</ul>
+		<>
+			<ul className={styles.list}>
+				{shops.map((shop, id) => {
+					if (
+						shop.shop_address !=
+						"0x0000000000000000000000000000000000000000"
+					) {
+						return (
+							<li key={id} className={styles.shop}>
+								<div className={styles.shop_info}>
+									<p>Address: {shop.shop_address}</p>
+									<p>City: {shop.city}</p>
+								</div>
+								<div className={styles.buttons}>
+									{renderButtons(id)}
+								</div>
+							</li>
+						);
+					}
+				})}
+			</ul>
+			<CreateRewievModal
+				active={rewiewModal}
+				setActive={setRewievModal}
+				shop={rewievShop}
+				id={rewievShopId}
+			/>
+		</>
 	);
 }
 

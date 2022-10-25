@@ -8,43 +8,43 @@ import Profile from "./components/Profile/Profile";
 import { Route, Routes, useNavigate } from "react-router-dom";
 
 function App() {
-  const navigate = useNavigate();
-  const [state, dispatch] = React.useContext(AppContext);
+	const navigate = useNavigate();
+	const [state, dispatch] = React.useContext(AppContext);
 
-  React.useEffect(() => {
-    async function connect() {
-      let web3 = new Web3(
-        new Web3.providers.HttpProvider("http://localhost:8545")
-      );
-      dispatch({ type: "SET_WEB3", payload: web3 });
+	React.useEffect(() => {
+		async function connect() {
+			let web3 = new Web3(
+				new Web3.providers.HttpProvider("http://localhost:8545")
+			);
+			dispatch({ type: "SET_WEB3", payload: web3 });
 
-      let contractInstance = new web3.eth.Contract(
-        abi,
-        "0x37252576E01fF0116D10EEc11fd744bcC8871dE3"
-      );
-      dispatch({ type: "SET_CONTRACT", payload: contractInstance });
-    }
-    connect();
-  }, []);
+			let contractInstance = new web3.eth.Contract(
+				abi,
+				"0xAd4098Dfb4d67378a1F634965C3EaF19f7c7d4Ea"
+			);
+			dispatch({ type: "SET_CONTRACT", payload: contractInstance });
+		}
+		connect();
+	}, []);
 
-  React.useEffect(() => {
-    function checkLogin() {
-      let loginStatus = state.login;
-      if (!loginStatus) {
-        navigate("/");
-      }
-    }
-    checkLogin();
-  }, [state.login]);
+	React.useEffect(() => {
+		function checkLogin() {
+			let loginStatus = state.login;
+			if (!loginStatus) {
+				navigate("/");
+			}
+		}
+		checkLogin();
+	}, [state.login]);
 
-  return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<ModalAuth />} />
-        <Route path="/profile/*" element={<Profile />} />
-      </Routes>
-    </div>
-  );
+	return (
+		<div className="App">
+			<Routes>
+				<Route path="/" element={<ModalAuth />} />
+				<Route path="/profile/*" element={<Profile />} />
+			</Routes>
+		</div>
+	);
 }
 
 export default App;
