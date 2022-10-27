@@ -1,0 +1,8 @@
+.comment_div {
+    display: flex;
+    margin-top: 50px;
+}
+
+.comment_input {
+    width: 100%
+}

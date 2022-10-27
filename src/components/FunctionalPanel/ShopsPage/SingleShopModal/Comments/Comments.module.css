@@ -1,0 +1,48 @@
+.show{
+    display: flex;
+}
+
+.hide{
+    display: none;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: 100%;
+    margin: 10px 0;
+    overflow-y: auto;
+}
+
+.element{
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: 1px black solid;
+    border-radius: 2px;
+    
+}
+
+.address{
+    font-weight: bold;
+}
+
+.like {
+    background: none;
+}
+
+.like img {
+    width: 30px;
+    height: 30px;
+}
+
+.like_active img {
+    filter: invert(73%) sepia(64%) saturate(306%) hue-rotate(168deg) brightness(94%) contrast(100%);
+}
+
+.btns {
+    display: flex;
+    width: 110px;
+    justify-content: space-between;
+    float: right;
+}

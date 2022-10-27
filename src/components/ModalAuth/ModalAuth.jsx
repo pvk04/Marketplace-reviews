@@ -50,6 +50,28 @@ function ModalAuth() {
 		}
 	}
 
+	async function authShop() {
+		let bytesPass = await state.web3.utils.soliditySha3({
+			type: "string",
+			value: password,
+		});
+		let resp = await state.contractInstance.methods
+			.shopLogin(bytesPass)
+			.call({ from: login });
+		if (resp) {
+			setLogin("");
+			setPassword("");
+			dispatch({ type: "SET_CURRENT", payload: login });
+			dispatch({ type: "SET_ROLE", payload: 3 });
+			dispatch({ type: "SET_ACTIVEROLE", payload: 3});
+			dispatch({ type: "USER_LOGIN" });
+			navigate("/profile");
+		} else {
+			alert("Incorrect address or password");
+			setPassword("");
+		}
+	}
+
 	return (
 		<div className={styles.modal_wrap}>
 			<div className={styles.modal_auth}>
@@ -80,6 +102,9 @@ function ModalAuth() {
 					<div className={styles.buttons_div}>
 						<button className={styles.login_button} onClick={auth}>
 							Login
+						</button>
+						<button className={styles.login_button} onClick={authShop}>
+							Login shop
 						</button>
 						<button className={styles.reg_button} onClick={reg}>
 							Register

@@ -54,6 +54,7 @@
 
 .text {
   max-width: 800px;
+  font-weight: bold;
   word-wrap: break-word;
 }
 
@@ -86,7 +87,6 @@
   width: 110px;
   justify-content: space-between;
   float: right;
-  margin-right: 20px;
 }
 
 .buttons_div {
@@ -96,6 +96,10 @@
   margin-top: 50px;
   flex-direction: column;
   align-items: center;
+}
+
+.comments{
+  margin-top: 30px;
 }
 
 textarea {

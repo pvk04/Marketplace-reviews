@@ -20,14 +20,14 @@ function App() {
 
 			let contractInstance = new web3.eth.Contract(
 				abi,
-				"0x8a299320FA5a61746C5A376F3B72E7225D6a5B30"
+				"0xF885059c330C767E86f19303c5567c253094bdf9"
 			);
 			dispatch({ type: "SET_CONTRACT", payload: contractInstance });
 
-      let accounts = await web3.eth.getAccounts();
-      for (let account of accounts){
-        await web3.eth.personal.unlockAccount(account, "", 0);
-      }
+			let accounts = await web3.eth.getAccounts();
+			for (let account of accounts) {
+				await web3.eth.personal.unlockAccount(account, "", 0);
+			}
 		}
 		connect();
 	}, []);

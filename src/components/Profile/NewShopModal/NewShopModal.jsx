@@ -8,6 +8,7 @@ function NewShopModal({ active, setActive }) {
 	const [addresses, setAddresses] = React.useState([]);
 	const [selected, setSelected] = React.useState("");
 	const [city, setCity] = React.useState("");
+	const [password, setPassword] = React.useState("");
 
 	function close(e) {
 		if (e.currentTarget === e.target) {
@@ -16,11 +17,16 @@ function NewShopModal({ active, setActive }) {
 	}
 
 	async function createNewShop() {
+		let bytesPass = await state.web3.utils.soliditySha3({
+			type: "string",
+			value: password,
+		});
 		let resp = await state.contractInstance.methods
-			.createNewShop(selected, city)
-			.send({ from: state.currentAcc });
+			.createNewShop(selected, city, bytesPass)
+			.send({ from: state.currentAcc, gas: "6721975" });
 		if (resp) {
 			setCity("");
+			setPassword("");
 			alert("New store successfully created");
 			await state.contractInstance.methods
 				.addHistory(
@@ -103,6 +109,17 @@ function NewShopModal({ active, setActive }) {
 							value={city}
 							onChange={(e) => {
 								setCity(e.target.value);
+							}}
+						/>
+					</div>
+					<div className={styles.content_div}>
+						<p>Password:</p>
+						<input
+							type="text"
+							className={styles.city_inp}
+							value={password}
+							onChange={(e) => {
+								setPassword(e.target.value);
 							}}
 						/>
 					</div>

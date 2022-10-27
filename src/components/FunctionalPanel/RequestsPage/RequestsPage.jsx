@@ -51,7 +51,7 @@ function RequestsPage() {
 			}
 		}
 		getRequests();
-	}, [state.action]);
+	}, [state.activity]);
 
 	return (
 		<ul className={styles.list}>
