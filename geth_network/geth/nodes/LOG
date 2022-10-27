@@ -18,3 +18,33 @@
 16:25:22.191399 db@open done T·32.6562ms
 16:26:04.807633 db@close closing
 16:26:04.808603 db@close done T·970.1µs
+=============== Oct 27, 2022 (MSK) ===============
+18:33:56.015564 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+18:33:56.016075 version@stat F·[1] S·145KiB[145KiB] Sc·[0.25]
+18:33:56.016075 db@open opening
+18:33:56.016614 journal@recovery F·1
+18:33:56.018139 journal@recovery recovering @3
+18:33:56.021750 memdb@flush created L0@5 N·316 S·10KiB "loc..seq,v5148":"n:\xed..ing,v5192"
+18:33:56.024435 version@stat F·[2] S·156KiB[156KiB] Sc·[0.50]
+18:33:56.040753 db@janitor F·4 G·0
+18:33:56.040753 db@open done T·24.6783ms
+18:33:56.075189 table@compaction L0·2 -> L1·0 S·156KiB Q·5444
+18:33:56.083431 table@build created L1@8 N·3747 S·129KiB "loc..seq,v5148":"version,v1"
+18:33:56.083431 version@stat F·[0 1] S·129KiB[0B 129KiB] Sc·[0.00 0.00]
+18:33:56.088182 table@compaction committed F-1 S-26KiB Ke·0 D·1694 T·12.4852ms
+18:33:56.088689 table@remove removed @2
+18:33:56.614638 db@close closing
+18:33:56.615755 db@close done T·1.117ms
+=============== Oct 27, 2022 (MSK) ===============
+18:34:21.589531 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+18:34:21.590067 version@stat F·[0 1] S·129KiB[0B 129KiB] Sc·[0.00 0.00]
+18:34:21.590067 db@open opening
+18:34:21.590067 journal@recovery F·1
+18:34:21.592304 journal@recovery recovering @6
+18:34:21.597331 memdb@flush created L0@9 N·1 S·164B "loc..seq,v5444":"loc..seq,v5444"
+18:34:21.599814 version@stat F·[1 1] S·129KiB[164B 129KiB] Sc·[0.25 0.00]
+18:34:21.614226 db@janitor F·5 G·1
+18:34:21.614226 db@janitor removing table-5
+18:34:21.615225 db@open done T·25.1576ms
+18:40:38.397044 db@close closing
+18:40:38.397044 db@close done T·0s

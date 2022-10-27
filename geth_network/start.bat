@@ -3,4 +3,5 @@ start geth --datadir ./ --networkid 15 --http --http.api "personal,web3,net,eth"
 start geth attach \\.\pipe\geth.ipc --exec miner.start()
 start geth attach \\.\pipe\geth.ipc
 cd ../
+npm install
 npm start
